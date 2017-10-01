@@ -1,6 +1,7 @@
 package app
 
 import (
+	"myapp/app/models"
 	"github.com/revel/revel"
 )
 
@@ -36,6 +37,9 @@ func init() {
 	// revel.OnAppStart(ExampleStartupScript)
 	// revel.OnAppStart(InitDB)
 	// revel.OnAppStart(FillCache)
+	
+	revel.OnAppStart(models.InitDB)// init database
+
 }
 
 // HeaderFilter adds common security headers
