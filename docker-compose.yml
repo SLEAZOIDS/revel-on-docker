@@ -1,0 +1,18 @@
+version: '2' #docker-composeのバージョンを指定
+services:
+    db:
+        image: mysql:5.7 #mysql5.7が準備されているimageを指定
+        environment:
+            - MYSQL_ROOT_PASSWORD=secret #rootのパスワード
+            - MYSQL_DATABASE=revel #revelデータベースの作成
+            - MYSQL_USER=revel #revelユーザの作成
+            - MYSQL_PASSWORD=secret #revelユーザのパスワード
+    web:
+        build: . #Dockerfileをビルド
+        command: revel run myapp #docker-compose up の際にアプリケーション実行
+        volumes:
+            - ./myapp:/go/src/myapp #作成したフォルダにアプリケーションをマウント
+        ports:
+            - 9000:9000 #ポート9000番の開放
+        depends_on:
+            - db #dbとつなげる
