@@ -4,12 +4,17 @@ import (
   "github.com/revel/revel"
   "github.com/jinzhu/gorm"
   "strings"
-  "time"
   "fmt"
   _"github.com/go-sql-driver/mysql"
 )
 
 var DB **gorm.DB
+
+type Product struct {
+  gorm.Model
+  Code string
+  Price uint
+}
 
 func InitDB() {
   db, err := gorm.Open("mysql", getConnectionString())
@@ -17,19 +22,14 @@ func InitDB() {
     revel.ERROR.Println("FATAL", err)
     panic(err)
   }
+  defer db.Close()
   
   db.DB()
-  db.AutoMigrate(&Model{})
-  fmt.Println(db.HasTable(&Model{}))
+  db.AutoMigrate(&Product{})
+  db.Create(&Product{Code: "L1212", Price: 1000})
+  
+  fmt.Println(db.HasTable(&Product{}))
   DB = &db
-}
-
-type Model struct {
-  gorm.Model
-  ID        uint `gorm:"primary_key"`
-  CreatedAt time.Time
-  UpdatedAt time.Time
-  DeletedAt *time.Time
 }
 
 type Validator interface {
