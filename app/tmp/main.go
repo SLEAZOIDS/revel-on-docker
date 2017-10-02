@@ -8,9 +8,9 @@ import (
 	controllers0 "github.com/revel/modules/static/app/controllers"
 	_ "github.com/revel/modules/testrunner/app"
 	controllers1 "github.com/revel/modules/testrunner/app/controllers"
-	_ "myapp/app"
-	controllers "myapp/app/controllers"
-	tests "myapp/tests"
+	_ "revel-docker/app"
+	controllers "revel-docker/app/controllers"
+	tests "revel-docker/tests"
 	"github.com/revel/revel/testing"
 )
 

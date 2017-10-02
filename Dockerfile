@@ -15,8 +15,8 @@ RUN go get github.com/revel/revel && \
     go get github.com/jinzhu/gorm && \
     go get github.com/go-sql-driver/mysql
 
-#アプリケーション(myapp)をマウントするためのディレクトリを作成
-RUN mkdir /go/src/myapp
+#アプリケーション(revel-docker)をマウントするためのディレクトリを作成
+RUN mkdir /go/src/revel-docker
 
 #revelはポート9000で実行されるのでポート9000の開放
 EXPOSE 9000

@@ -1,7 +1,7 @@
 package app
 
 import (
-	"myapp/app/models"
+	"revel-docker/app/models"
 	"github.com/revel/revel"
 )
 
