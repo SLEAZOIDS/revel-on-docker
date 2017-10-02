@@ -13,7 +13,10 @@ RUN apt-get update && \
 RUN go get github.com/revel/revel && \
     go get github.com/revel/cmd/revel && \
     go get github.com/jinzhu/gorm && \
-    go get github.com/go-sql-driver/mysql
+    go get github.com/go-sql-driver/mysql && \
+    go get github.com/wcl48/valval && \
+    go get bitbucket.org/liamstask/goose/cmd/goose && \
+    go get -v github.com/ziutek/mymysql/...
 
 #アプリケーション(revel-docker)をマウントするためのディレクトリを作成
 RUN mkdir /go/src/revel-docker

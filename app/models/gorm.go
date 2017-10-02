@@ -10,12 +10,6 @@ import (
 
 var DB **gorm.DB
 
-type Product struct {
-  gorm.Model
-  Code string
-  Price uint
-}
-
 func InitDB() {
   db, err := gorm.Open("mysql", getConnectionString())
   if err != nil {
@@ -25,10 +19,6 @@ func InitDB() {
   defer db.Close()
   
   db.DB()
-  db.AutoMigrate(&Product{})
-  db.Create(&Product{Code: "L1212", Price: 1000})
-  
-  fmt.Println(db.HasTable(&Product{}))
   DB = &db
 }
 
