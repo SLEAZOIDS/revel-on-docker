@@ -47,7 +47,7 @@ func main() {
 					&revel.MethodArg{Name: "myName", Type: reflect.TypeOf((*string)(nil)) },
 				},
 				RenderArgNames: map[int][]string{ 
-					17: []string{ 
+					26: []string{ 
 						"myName",
 					},
 				},
@@ -121,6 +121,10 @@ func main() {
 		})
 	
 	revel.DefaultValidationKeys = map[string]map[int]string{ 
+		"revel-docker/app/controllers.App.Hello": { 
+			17: "myName",
+			18: "myName",
+		},
 	}
 	testing.TestSuites = []interface{}{ 
 		(*tests.AppTest)(nil),
