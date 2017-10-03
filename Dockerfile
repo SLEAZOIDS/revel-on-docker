@@ -1,22 +1,19 @@
-#golang v1.8が準備されているimageを利用
 FROM golang:1.8.0 
 
-#$GOPATHに/go/srcを追加．この後srcの下にアプリケーションフォルダを作成する為
+#$GOPATHに/go/srcを追加
 ENV GOPATH $GOPATH:/go/src 
 
-#とりあえず更新
 RUN apt-get update && \
     apt-get upgrade -y
 
-#revel，revel-cli，gorm，go-sql-driverのインストール
-#revelにはORMがないので
-RUN go get github.com/revel/revel && \
-    go get github.com/revel/cmd/revel && \
-    go get github.com/jinzhu/gorm && \
-    go get github.com/go-sql-driver/mysql && \
-    go get github.com/wcl48/valval && \
-    go get bitbucket.org/liamstask/goose/cmd/goose && \
-    go get -v github.com/ziutek/mymysql/...
+#revel，revel-cli，gorm，go-sql-driver, valval, mymysql, gooseのインストール
+RUN go get github.com/revel/revel \
+    github.com/revel/cmd/revel \
+    github.com/jinzhu/gorm \
+    github.com/go-sql-driver/mysql \
+    github.com/wcl48/valval \
+    github.com/ziutek/mymysql/... \
+    bitbucket.org/liamstask/goose/cmd/goose
 
 #アプリケーション(revel-docker)をマウントするためのディレクトリを作成
 RUN mkdir /go/src/revel-docker
