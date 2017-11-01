@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/revel/revel"
+	"revel-docker/app/models"
 )
 
 type App struct {
@@ -14,14 +15,19 @@ func (c App) Index() revel.Result {
 }
 
 func (c App) Hello(myName string) revel.Result {
-    c.Validation.Required(myName).Message("Your name is required!")
-    c.Validation.MinSize(myName, 3).Message("Your name is not long enough!")
+	c.Validation.Required(myName).Message("Your name is required!")
+	c.Validation.MinSize(myName, 3).Message("Your name is not long enough!")
 
-    if c.Validation.HasErrors() {
-        c.Validation.Keep()
-        c.FlashParams()
-        return c.Redirect(App.Index)
-    }
+	if c.Validation.HasErrors() {
+		c.Validation.Keep()
+		c.FlashParams()
+		return c.Redirect(App.Index)
+	}
 
-    return c.Render(myName)
+	return c.Render(myName)
+}
+
+func (c App) Scraping() revel.Result {
+	site_name, topics := models.Scraping()
+	return c.Render(site_name, topics)
 }

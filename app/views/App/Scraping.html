@@ -1,0 +1,19 @@
+{{set . "title" "Home"}}
+{{template "header.html" .}}
+
+<h1>スクレイピングテスト</h1>
+
+<h2>{{.site_name}}</h2>
+
+<div>
+    <h4>トピックス</h4>
+    <ul>
+      {{range .topics}}
+        <li><a href={{.Href}}>{{.Text}}</a></li>
+      {{end}}
+    </ul>
+</div>
+
+<a href="/">Back to form</a>
+
+{{template "footer.html" .}}

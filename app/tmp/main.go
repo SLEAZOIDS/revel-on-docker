@@ -36,7 +36,7 @@ func main() {
 				Args: []*revel.MethodArg{ 
 				},
 				RenderArgNames: map[int][]string{ 
-					13: []string{ 
+					14: []string{ 
 						"greeting",
 					},
 				},
@@ -47,8 +47,19 @@ func main() {
 					&revel.MethodArg{Name: "myName", Type: reflect.TypeOf((*string)(nil)) },
 				},
 				RenderArgNames: map[int][]string{ 
-					26: []string{ 
+					27: []string{ 
 						"myName",
+					},
+				},
+			},
+			&revel.MethodType{
+				Name: "Scraping",
+				Args: []*revel.MethodArg{ 
+				},
+				RenderArgNames: map[int][]string{ 
+					32: []string{ 
+						"site_name",
+						"topics",
 					},
 				},
 			},
@@ -122,8 +133,8 @@ func main() {
 	
 	revel.DefaultValidationKeys = map[string]map[int]string{ 
 		"revel-docker/app/controllers.App.Hello": { 
-			17: "myName",
 			18: "myName",
+			19: "myName",
 		},
 	}
 	testing.TestSuites = []interface{}{ 
