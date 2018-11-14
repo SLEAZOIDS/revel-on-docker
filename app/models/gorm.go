@@ -4,7 +4,9 @@ import (
   "github.com/revel/revel"
   "github.com/jinzhu/gorm"
   "strings"
+  "time"
   "fmt"
+  "log"
   _"github.com/go-sql-driver/mysql"
 )
 
@@ -12,14 +14,22 @@ var DB **gorm.DB
 
 func InitDB() {
   db, err := gorm.Open("mysql", getConnectionString())
+
   if err != nil {
-    revel.ERROR.Println("FATAL", err)
+    log.Println("FATAL", err)
     panic(err)
   }
-  defer db.Close()
-  
+
   db.DB()
   DB = &db
+}
+
+type Model struct {
+  gorm.Model
+  ID        uint `gorm:"primary_key"`
+  CreatedAt time.Time
+  UpdatedAt time.Time
+  DeletedAt *time.Time
 }
 
 type Validator interface {
@@ -31,7 +41,7 @@ func getParamString(param string, defaultValue string) string {
     p, found := revel.Config.String(param)
     if !found {
         if defaultValue == "" {
-            revel.ERROR.Fatal("Cound not find parameter: " + param)
+            log.Fatal("Cound not find parameter: " + param)
         } else {
             return defaultValue
         }

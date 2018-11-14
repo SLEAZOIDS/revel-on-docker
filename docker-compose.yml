@@ -1,4 +1,4 @@
-version: '2' #docker-composeのバージョンを指定
+version: '3' #docker-composeのバージョンを指定
 services:
     db:
         image: mysql:5.7 #mysql5.7が準備されているimageを指定
@@ -13,6 +13,6 @@ services:
         volumes:
             - ./:/go/src/revel-docker #作成したフォルダにアプリケーションをマウント
         ports:
-            - 9000:9000 #ポート9000番の開放
+            - 9001:9001
         depends_on:
             - db #dbとつなげる
